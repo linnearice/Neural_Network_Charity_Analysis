@@ -55,7 +55,7 @@ Epoch 00010: saving model to checkpoints\weights.10.hdf5
 ### Optimizing the Model
 Since the model fell short of the target performance of 75%, several varying techniques were evaluated to potentially approach the target.  These techniques included the following:
 
-1.  Increased Neurons from 80 to 150 for the first layer and from 30 to 75 for the second layer.  This trial proved to yield very similar yet unimproved results (accuracy rate of 68%).  To simplify processing time and reduce iterations, the decision was made to keep the number of neurons the same as the ***first NN trial***.
+***1.  Increased Neurons from 80 to 150 for the first layer and from 30 to 75 for the second layer.  This trial proved to yield very similar yet unimproved results (accuracy rate of 68%).  To simplify processing time and reduce iterations, the decision was made to keep the number of neurons the same as the ***first NN trial***.***
    
 Model: "sequential_2"
 _________________________________________________________________
@@ -77,7 +77,7 @@ Performance:
 268/268 - 0s - loss: 1.1529 - accuracy: 0.6838 - 353ms/epoch - 1ms/step
 Loss: 1.152901530265808, Accuracy: 0.6838483810424805
 
-2.  Increased Hidden Layers from 2 to 4.  The first layer has 80 neurons, the second has 30 neurons, the third has 20 neurons, and the fourth has 20 neurons. This trial proved to yield very similar yet unimproved results (accuracy rate of 68%).  To simplify processing time and reduce iterations, the decision was made to keep the number of hidden layers the same as the ***first NN trial***.
+***2.  Increased Hidden Layers from 2 to 4.  The first layer has 80 neurons, the second has 30 neurons, the third has 20 neurons, and the fourth has 20 neurons. This trial proved to yield very similar yet unimproved results (accuracy rate of 68%).  To simplify processing time and reduce iterations, the decision was made to keep the number of hidden layers the same as the ***first NN trial***.***
 
 Model: "sequential_3"
 _________________________________________________________________
@@ -103,7 +103,7 @@ Performance
 268/268 - 0s - loss: 1.1529 - accuracy: 0.6838 - 353ms/epoch - 1ms/step
 Loss: 1.152901530265808, Accuracy: 0.6838483810424805
 
-3.  Changed the activation function of each hidden layer from ReLU to Leaky ReLU.  Kept the output layer activation function the same with sigmoid.  Again, the change yielded very similar results with an accuracy rate of 68% and therefore, stay with the ***first NN trial***.
+***3.  Changed the activation function of each hidden layer from ReLU to Leaky ReLU.  Kept the output layer activation function the same with sigmoid.  Again, the change yielded very similar results with an accuracy rate of 68% and therefore, stay with the ***first NN trial***.***
 
 First hidden layer:
 nn.add(tf.keras.layers.Dense(units=hidden_nodes_layer1, input_dim = number_input_features,activation = "leaky_relu"))
@@ -120,21 +120,21 @@ Performance:
 268/268 - 0s - loss: 1.1529 - accuracy: 0.6838 - 353ms/epoch - 1ms/step
 Loss: 1.152901530265808, Accuracy: 0.6838483810424805
 
-4.  Changed the model altogether to the Logistic Regression model.  The Logistic regression model accuracy is 47%.  This is a very low performance and cannot be utilized over any other model.
+***4.  Changed the model altogether to the Logistic Regression model.  The Logistic regression model accuracy is 47%.  This is a very low performance and cannot be utilized over any other model.***
 
 log_classifier = LogisticRegression(solver = "lbfgs", max_iter = 200)
 log_classifier.fit(X_train,y_train)
 y_pred = log_classifier.predict(X_test)
 print(f"Logistic regression model accuracy: {accuracy_score(y_test,y_pred):0.3f}")
 
-5.  Again, changed the model altogether to the machine learning Random Forest Classifier.  The Random Forest Classifier predictive accuracy is a solid 71% and matches the accuracy of the ***first NN trial***.
+***5.  Again, changed the model altogether to the machine learning Random Forest Classifier.  The Random Forest Classifier predictive accuracy is a solid 71% and matches the accuracy of the ***first NN trial***.***
 
 rf_model = RandomForestClassifier(n_estimators=128, random_state=78)
 rf_model = rf_model.fit(X_train_scaled,y_train)
 y_pred = rf_model.predict(X_test_scaled)
 print(f" Random Forest Classifier predictive accuracy: {accuracy_score(y_test,y_pred):0.3f}")
 
-6.  Removed the "USE_CASE" columns in an attempt to reduce noise; however, this attempt at 68% did not increase the accuracy rate to target.  The results from this option are as follows:
+***6.  Removed the "USE_CASE" columns in an attempt to reduce noise; however, this attempt at 68% did not increase the accuracy rate to target.  The results from this option are as follows:***
 
 Performance:
 268/268 - 0s - loss: 1.1529 - accuracy: 0.6838 - 353ms/epoch - 1ms/step
