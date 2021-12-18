@@ -2,24 +2,25 @@
 
 ## Overview
 
-Alphabet Soup, a philanthropic foundation dedicated to helping organizations that help the environment, improve people's overall wellbeing, and unify the world, has raised and donated over $10 Billion to oganizations in the last 20 years.  Organizations have used these donations to invest in life-saving technologies and organize reforestation groups around the world.  Alphabet Soup realizes the impact their donations can have and seek to give those companies that are most likely to put these donations to good use.  Alphabet Soup's CEO has asked their data scientist group to analyze the company's past donation pool (a pool of 34,000 organizations) and develop a mathematical, data driven tool to pinpoint the best companies to provide donations.  The data scientist team has determined they will utilize an advanced statistical modeling technique such as deep learging Neural Network to guide Alphabet Soup in their future donations.
+Alphabet Soup, a philanthropic foundation dedicated to helping organizations that help the environment, improve people's overall wellbeing, and unify the world, has raised and donated over $10 Billion to oganizations in the last 20 years.  Organizations have used these donations to invest in life-saving technologies and organize reforestation groups around the world.  Alphabet Soup realizes the impact their donations can have and seeks to give to those companies that are most likely to put these donations to good use.  Alphabet Soup's CEO has asked their data scientist group to analyze the company's past donation pool (a pool of 34,000 organizations) and develop a mathematical, data driven tool to pinpoint the best companies to provide donations.  The data scientist team has determined they will utilize an advanced statistical modeling technique such as the deep learning Neural Network to guide Alphabet Soup in their future donations.
 
 For this project, the data scientist team conducted the following:
-* Preprocessing Data for a Neural Network Model
-* Compile, Train, and Evaluate the Model
-* Optimize the Model and make comparisons to other machine learning models
+* Preprocessed Data for a Neural Network Model
+* Compiled, Trained, and Evaluated the Model
+* Saved model weights and saved the results to file
+* Optimized the Model and made comparisons to other machine learning models
 
 ## Results
 
 ### Data Preprocessing
-***Target*** - For the target, the datascientist team has identified a datapoint which evaluated the company's success in implementing a project implemented using Alphabet Soup's donation.  In the dataset this variable is labeled "IS_SUCCESSFUL".
-***Features*** - Variables that were considered features for my model are essentially every column except for IS_SUCCESSFUL which is our target.  Note the columns that were not considered as features below.
-***Inconsequential Variables*** - Variables which were determined as inconsequential and not having an affect on determining the best donation candidates were: EIN - employer identification number and NAME - the company name.
+*  ***Target Variable*** - For the target, the datascientist team has identified a datapoint which evaluated the company's success in implementing a project implemented using Alphabet Soup's donation.  In the dataset this variable is labeled "IS_SUCCESSFUL".
+*  ***Features Variables*** - Variables that were considered features are essentially every column except the target, IS_SUCCESSFUL.  Note the columns that were not considered as features below.
+*  ***Inconsequential Variables*** - Variables which were determined as inconsequential and not having an affect on determining the best donation candidates were: EIN - employer identification number and NAME - the company name.
 
 ### Compiling, Training, and Evaluating the Model
-***Neurons, layers, and activation function:*** The neural network model used 2 hidden layers: the first layer had 80 neurons and the second layer had 30 neurons.  An output layer is also utilized. The first and second hidden layers utilize the Rectified Linear Unit (ReLU) activation function and the activation function for the output layer is the sigmoid function.
+***Neurons, layers, and activation function:*** The neural network model used 2 hidden layers: the first layer had 80 neurons and the second layer had 30 neurons.  An output layer is also utilized. The first and second hidden layers utilized the Rectified Linear Unit (ReLU) activation function and the activation function for the output layer is the sigmoid function.
 
-***Target Model Performance ("first NN trial)*** The model performance had a loss: 70% and accuracy: 70%.  The model did not achieve the Target Model Performance rate of 75%.  Further models are tested below to potentially approach the Target Model Performance of 75%.  The actual evaluation statistics the model are: 
+***Target Model Performance*** The model performance ("first NN trial") had a loss: 70% and accuracy: 70%.  The model did not achieve the Target Model Performance rate of 75%.  Further models are tested below to potentially approach the Target Model Performance of 75%.  The actual evaluation statistics the first NN trial model are: 
 * 268/268 - 0s - loss: 0.6958 - accuracy: 0.6968 - 229ms/epoch - 855us/step; Loss: 0.6958094835281372, Accuracy: 0.6967930197715759
 
 ### Saved the Model Weights
@@ -54,9 +55,9 @@ Since the model fell short of the target performance of 75%, several varying tec
 
 1.  Increased Neurons from 80 to 150 for the first layer and from 30 to 75 for the second layer.  This trial proved to yield very similar yet unimproved results (accuracy rate of 68%).  To simplify processing time and reduce iterations, the decision was made to keep the number of neurons the same as the ***first NN trial***.
    
-* Model: "sequential_2"
+Model: "sequential_2"
 _________________________________________________________________
- Layer (type)                Output Shape              Param #   
+ Layer (type)                Output Shape              Param    
 =================================================================
  dense_8 (Dense)             (None, 150)               6750      
                                                                  
@@ -69,6 +70,8 @@ Total params: 18,151
 Trainable params: 18,151
 Non-trainable params: 0
 _________________________________________________________________
+
+Performance:
 268/268 - 0s - loss: 1.1529 - accuracy: 0.6838 - 353ms/epoch - 1ms/step
 Loss: 1.152901530265808, Accuracy: 0.6838483810424805
 
@@ -76,7 +79,7 @@ Loss: 1.152901530265808, Accuracy: 0.6838483810424805
 
 Model: "sequential_3"
 _________________________________________________________________
- Layer (type)                Output Shape              Param #   
+ Layer (type)                Output Shape              Param    
 =================================================================
  dense_11 (Dense)            (None, 80)                3600      
                                                                  
@@ -93,22 +96,25 @@ Total params: 7,091
 Trainable params: 7,091
 Non-trainable params: 0
 _________________________________________________________________
+
+Performance
 268/268 - 0s - loss: 1.1529 - accuracy: 0.6838 - 353ms/epoch - 1ms/step
 Loss: 1.152901530265808, Accuracy: 0.6838483810424805
 
 3.  Changed the activation function of each hidden layer from ReLU to Leaky ReLU.  Kept the output layer activation function the same with sigmoid.  Again, the change yielded very similary results with an accuracy rate of 68% and therefore, stay with the ***first NN trial***.
 
-# First hidden layer
+First hidden layer:
 nn.add(tf.keras.layers.Dense(units=hidden_nodes_layer1, input_dim = number_input_features,activation = "leaky_relu"))
-# Second hidden layer
+Second hidden layer:
 nn.add(tf.keras.layers.Dense(units=hidden_nodes_layer2,activation="leaky_relu"))
-# Third hidden layer
+Third hidden layer:
 nn.add(tf.keras.layers.Dense(units=hidden_nodes_layer3,activation="leaky_relu"))
-# Third hidden layer
+Third hidden layer:
 nn.add(tf.keras.layers.Dense(units=hidden_nodes_layer4,activation="leaky_relu"))
-# Output layer
+Output layer:
 nn.add(tf.keras.layers.Dense(units=1, activation="sigmoid"))
 
+Performance:
 268/268 - 0s - loss: 1.1529 - accuracy: 0.6838 - 353ms/epoch - 1ms/step
 Loss: 1.152901530265808, Accuracy: 0.6838483810424805
 
@@ -128,6 +134,7 @@ print(f" Random Forest Classifier predictive accuracy: {accuracy_score(y_test,y_
 
 6.  Removed the "USE_CASE" columns in an attempt to reduce noise; however, this attempt at 68% did not increase the accuracy rate to target.  The results from this option are as follows:
 
+Performance:
 268/268 - 0s - loss: 1.1529 - accuracy: 0.6838 - 353ms/epoch - 1ms/step
 Loss: 1.152901530265808, Accuracy: 0.6838483810424805
 
