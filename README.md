@@ -21,7 +21,9 @@ For this project, the data scientist team conducted the following:
 ***Neurons, layers, and activation function:*** The neural network model used 2 hidden layers: the first layer had 80 neurons and the second layer had 30 neurons.  An output layer is also utilized. The first and second hidden layers utilized the Rectified Linear Unit (ReLU) activation function and the activation function for the output layer is the sigmoid function.
 
 ***Target Model Performance*** The model performance ("first NN trial") had a loss: 70% and accuracy: 70%.  The model did not achieve the Target Model Performance rate of 75%.  Further models are tested below to potentially approach the Target Model Performance of 75%.  The actual evaluation statistics the first NN trial model are: 
-* 268/268 - 0s - loss: 0.6958 - accuracy: 0.6968 - 229ms/epoch - 855us/step; Loss: 0.6958094835281372, Accuracy: 0.6967930197715759
+
+* Performance:
+268/268 - 0s - loss: 0.6958 - accuracy: 0.6968 - 229ms/epoch - 855us/step; Loss: 0.6958094835281372, Accuracy: 0.6967930197715759
 
 ### Saved the Model Weights
 The model weights are saved every 5 epochs and the results are saved to an HDF5 file.
@@ -101,7 +103,7 @@ Performance
 268/268 - 0s - loss: 1.1529 - accuracy: 0.6838 - 353ms/epoch - 1ms/step
 Loss: 1.152901530265808, Accuracy: 0.6838483810424805
 
-3.  Changed the activation function of each hidden layer from ReLU to Leaky ReLU.  Kept the output layer activation function the same with sigmoid.  Again, the change yielded very similary results with an accuracy rate of 68% and therefore, stay with the ***first NN trial***.
+3.  Changed the activation function of each hidden layer from ReLU to Leaky ReLU.  Kept the output layer activation function the same with sigmoid.  Again, the change yielded very similar results with an accuracy rate of 68% and therefore, stay with the ***first NN trial***.
 
 First hidden layer:
 nn.add(tf.keras.layers.Dense(units=hidden_nodes_layer1, input_dim = number_input_features,activation = "leaky_relu"))
@@ -139,6 +141,6 @@ Performance:
 Loss: 1.152901530265808, Accuracy: 0.6838483810424805
 
 ## Summary
-It is unfortunate that none of the Neuron Network trial modifications nor selection of the alternative statistical models reached the target model performance of 75%.  With that the data scientist team determined the best model to use is The Random Forest Classifier. 
+It is unfortunate that none of the Neuron Network trial modifications nor selection of the alternative statistical models reached the target model performance of 75%.  With that, the data scientist team determined the best model to potentially use is The Random Forest Classifier. 
 
-The ***first NN trial*** results were 70% accuracy.   While the Random Forest Classifier's results at 71% were not materially improved the model is simpler and easier to administer than the Neural Network model.  Albeit there are times when a Random Forest Classifier should not be used over a Neuron Network model (as with image data or natural language data, for example).  However, in this case the data is tabular, and can be trained with a sufficient number of estimators and tree depth so that the Random Forest performance can match that of the deep learning neuron network.  Also in this case the Random Forest Classifier runs in seconds versus the Neural Network model minutes and therefore, is the best model for the job.
+The ***first NN trial*** results yielded 70% accuracy.   While the Random Forest Classifier's results at 71% were not materially improved the model is simpler and easier to administer than the Neural Network model.  Albeit, there are times when a Random Forest Classifier should not be used over a Neuron Network model (as with image data or natural language data, for example); however, in this case the data is tabular, and can be trained with a sufficient number of estimators and tree depth so that the Random Forest performance can match that of the deep learning neuron network.  Also in this case the Random Forest Classifier runs in seconds versus the Neural Network model's minutes run time; and therefore, Random Forest Classifier is the best model at this point in time.
